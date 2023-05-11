@@ -1,0 +1,8 @@
+{
+  "scripts": {
+    "start": "pnpm -r run start",
+    "build": "pnpm -r run build",
+    "test": "pnpm -r run test",
+    "dev": "read -p 'package: ' selpkg && pnpm --filter $selpkg run dev"
+  }
+}
