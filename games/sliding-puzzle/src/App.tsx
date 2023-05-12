@@ -25,8 +25,6 @@ for (let row = 0; row < 4; row++) {
       id: target.row * 4 + target.col,
       row,
       col,
-      targetRow: target.row,
-      targetCol: target.col,
     });
   }
 }
@@ -42,8 +40,6 @@ function App() {
     const clickedTile = board.find(
       (tile) => tile.row === action.row && tile.col === action.col
     ) as Tile;
-
-    console.clear();
 
     // check if clicked tile is adjacent to empty tile
     if (
@@ -72,10 +68,6 @@ function App() {
         }
       });
       return newBoard;
-    } else {
-      console.log(`can't move ${clickedTile.id}`);
-      console.log(emptyTile.row + 1, emptyTile.col + 1);
-      console.log(clickedTile.row + 1, clickedTile.col + 1);
     }
 
     return board;
