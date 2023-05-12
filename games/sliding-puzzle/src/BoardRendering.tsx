@@ -16,9 +16,33 @@ export default function BoardRendering({
   if (correctTiles.length === 16) {
     win = true;
   }
+
   return (
     <>
-      {win && <h1>YOU WIN!</h1>}
+      {win && (
+        <h3
+          style={{
+            textAlign: "center",
+            color: "orange",
+            fontWeight: "bold",
+          }}
+        >
+          YOU WON!{" "}
+          <button
+            style={{
+              backgroundColor: "orange",
+              color: "white",
+              fontWeight: "bold",
+              borderRadius: "0.5em",
+              padding: "0.75em",
+              border: "none",
+            }}
+            onClick={() => window.location.reload()}
+          >
+            Restart
+          </button>
+        </h3>
+      )}
       <div
         style={{
           display: "grid",
@@ -32,7 +56,6 @@ export default function BoardRendering({
           return (
             <div
               style={{
-                border: "1px solid black",
                 borderRadius: "0.5em",
                 padding: "0.5em",
                 textAlign: "center",
@@ -46,7 +69,7 @@ export default function BoardRendering({
               key={tile.id}
               onClick={() => reduce({ row: tile.row, col: tile.col })}
             >
-              {tile.id + 1}
+              {tile.id === 15 ? "" : tile.id + 1}
             </div>
           );
         })}
