@@ -11,7 +11,9 @@ const TARGET_Y_SIN_SPREAD = 20;
 
 const NUMBER_OF_TARGETS = 10;
 const TARGET_SIZE = 32;
+
 const SCORE_PER_HIT = 1;
+const MISS_PUNISHMENT = 1;
 
 type Target = {
   id: number;
@@ -54,39 +56,78 @@ function App() {
       console.log(id);
       const newTargets = targets.filter((target) => target.id !== id);
       setTargets(newTargets);
-      setScore(score + SCORE_PER_HIT);
+      setScore((score) => score + SCORE_PER_HIT);
     };
   }
+
+  useEffect(() => {
+    if (targets.length === 0) {
+      setGameStarted(false);
+    }
+  }, [targets]);
 
   return (
     <>
       <header>
-        <h1>Kill the circle</h1>
-        <p>Score: {score}</p>
-        <p>Frame: {frame}</p>
-        <button onClick={initGame}>Restart</button>
+        <p>
+          {score !== 0 && (
+            <>
+              {score !== 0 && !gameStarted ? "Score of last match" : "Score"}:{" "}
+              {score}/{NUMBER_OF_TARGETS * SCORE_PER_HIT}
+            </>
+          )}
+        </p>
+        {gameStarted && <p>Frame: {frame}</p>}
       </header>
       <main>
         {gameStarted ? (
-          targets.map((target) => (
-            <div
-              className="circle"
-              style={{
-                height: TARGET_SIZE,
-                width: TARGET_SIZE,
-                left: (frame + target.frameOffset) * target.speed + "%",
-                top:
-                  target.y * TARGET_Y_SPREAD +
-                  TARGET_Y_SIN_SPREAD *
-                    Math.sin((frame + target.frameOffset) / FPS) +
-                  "%",
-              }}
-              key={target.id}
-              onClick={hit(target.id)}
-            ></div>
-          ))
+          targets.map((target) => {
+            const xPosition = (frame + target.frameOffset) * target.speed;
+
+            const yPosition =
+              target.y * TARGET_Y_SPREAD +
+              TARGET_Y_SIN_SPREAD *
+                Math.sin((frame + target.frameOffset) / FPS);
+
+            if (xPosition > 100) {
+              setScore((score) => score - MISS_PUNISHMENT);
+              setTargets((targets) =>
+                targets.filter((t) => t.id !== target.id)
+              );
+            }
+
+            return (
+              <div
+                className="circle"
+                style={{
+                  height: TARGET_SIZE,
+                  width: TARGET_SIZE,
+                  left: xPosition + "%",
+                  top: yPosition + "%",
+                }}
+                key={target.id}
+                onClick={hit(target.id)}
+              ></div>
+            );
+          })
         ) : (
-          <>Start Game by clicking restart</>
+          <>
+            <h1>Kill the circle</h1>
+            <p>
+              Click on the button below, to start the game. Then click on the
+              circles to kill them.
+            </p>
+            <p>
+              On kill you get {SCORE_PER_HIT} point{SCORE_PER_HIT > 1 && "s"}.
+              On miss you lose {MISS_PUNISHMENT} point
+              {MISS_PUNISHMENT > 1 && "s"}.
+            </p>
+            <p>
+              FPS: {FPS} <br />
+              Number of Targets: {NUMBER_OF_TARGETS}
+            </p>
+            <button onClick={initGame}>Start Game</button>
+          </>
         )}
       </main>
     </>
