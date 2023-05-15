@@ -1,0 +1,58 @@
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+}
+
+body,
+#root {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 0;
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+
+  scrollbar-width: none;
+}
+
+header {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  gap: 1rem;
+}
+
+main {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  cursor: crosshair;
+  margin: 1em;
+  padding: 0;
+}
+
+.circle {
+  position: absolute;
+  border: 2px solid #fff;
+  border-radius: 100%;
+  background-color: transparent;
+  box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.5);
+}
