@@ -1,3 +1,7 @@
 {
-  "conventionalCommits.scopes": ["sliding-puzzle", "kill-the-circle"]
+  "conventionalCommits.scopes": [
+    "sliding-puzzle",
+    "kill-the-circle",
+    "remember-the-number"
+  ]
 }
