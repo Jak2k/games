@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "build": "turbo build",
+    "build": "turbo build && sh copy-dist.sh",
     "test": "turbo test",
     "dev": "node dev.js"
   },
