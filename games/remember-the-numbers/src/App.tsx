@@ -1,4 +1,12 @@
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
+import useSdk, { GameState } from "../../../packages/useSdk";
+
+type CustomData = {
+  message: string;
+  numbers: string;
+};
+
+type GState = GameState<CustomData>;
 
 function App() {
   const [numbers, setNumbers] = useState("");
@@ -8,6 +16,14 @@ function App() {
   const [highScore, setHighScore] = useState(
     parseInt(localStorage.getItem("highScore") || "0")
   );
+
+  const recoverGame = useCallback((gameState: GState) => {
+    setMessage(gameState.customData.message || "Remember the Numbers");
+    setHighScore(gameState.highScore || 0);
+    setNumbers(gameState.customData.numbers || "");
+  }, []);
+
+  const { updateGameState } = useSdk<CustomData>(recoverGame);
 
   useEffect(() => {
     localStorage.setItem("highScore", highScore.toString());
@@ -24,6 +40,19 @@ function App() {
       numberDisplayRef.current.style.opacity = "0";
     }, 1000);
   };
+
+  useEffect(
+    () =>
+      updateGameState({
+        customData: {
+          message,
+          numbers,
+        },
+        highScore,
+        score: numbers.length - 1,
+      }),
+    [numbers, message, highScore, updateGameState]
+  );
 
   const gameOver = () => {
     const score = numbers.length - 1;

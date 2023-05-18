@@ -1,4 +1,5 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
+import useSdk, { GameState } from "../../../packages/useSdk";
 
 const FPS = 60;
 
@@ -22,11 +23,39 @@ type Target = {
   frameOffset: number;
 };
 
+type GState = GameState<object>;
+
 function App() {
   const [targets, setTargets] = useState<Target[]>([]);
   const [frame, setFrame] = useState(0);
   const [score, setScore] = useState(0);
+  const [highScore, setHighScore] = useState(0);
   const [gameStarted, setGameStarted] = useState(false);
+
+  const recoverGame = useCallback((gameState: GState) => {
+    setHighScore(gameState.highScore);
+  }, []);
+
+  const { updateGameState } = useSdk<object>(recoverGame);
+
+  useEffect(() => {
+    console.log("Sending", {
+      highScore,
+      score,
+      customData: {},
+    });
+    updateGameState({
+      highScore,
+      score,
+      customData: {},
+    });
+  }, [highScore, score, updateGameState]);
+
+  useEffect(() => {
+    if (score > highScore) {
+      setHighScore(score);
+    }
+  }, [score, highScore]);
 
   const initGame = () => {
     const newTargets = [];
@@ -73,7 +102,7 @@ function App() {
           {score !== 0 && (
             <>
               {score !== 0 && !gameStarted ? "Score of last match" : "Score"}:{" "}
-              {score}/{NUMBER_OF_TARGETS * SCORE_PER_HIT}
+              {score}/{NUMBER_OF_TARGETS * SCORE_PER_HIT} High Sore: {highScore}
             </>
           )}
         </p>
