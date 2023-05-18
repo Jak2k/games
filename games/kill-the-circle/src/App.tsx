@@ -39,11 +39,6 @@ function App() {
   const { updateGameState } = useSdk<object>(recoverGame);
 
   useEffect(() => {
-    console.log("Sending", {
-      highScore,
-      score,
-      customData: {},
-    });
     updateGameState({
       highScore,
       score,
@@ -82,7 +77,6 @@ function App() {
 
   function hit(id: number) {
     return () => {
-      console.log(id);
       const newTargets = targets.filter((target) => target.id !== id);
       setTargets(newTargets);
       setScore((score) => score + SCORE_PER_HIT);
