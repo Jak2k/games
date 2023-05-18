@@ -11,7 +11,7 @@
     "node": ">=16.0.0"
   },
   "dependencies": {
-    "turbo": "^1.9.6"
+    "turbo": "^1.9.7"
   },
   "devDependencies": {
     "node-option": "^0.0.6"
