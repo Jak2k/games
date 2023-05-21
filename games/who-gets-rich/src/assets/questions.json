@@ -1,0 +1,26 @@
+{
+  "1": [
+    {
+      "question": "What is the capital of France?",
+      "possibleAnswers": {
+        "A": "London",
+        "B": "Paris",
+        "C": "Rome",
+        "D": "Madrid"
+      },
+      "correctAnswer": "B"
+    }
+  ],
+  "2": [
+    {
+      "question": "What isn't a number in German?",
+      "possibleAnswers": {
+        "A": "Neun",
+        "B": "Fünf",
+        "C": "Nein",
+        "D": "Dreizehn"
+      },
+      "correctAnswer": "C"
+    }
+  ]
+}

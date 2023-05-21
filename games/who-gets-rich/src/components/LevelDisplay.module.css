@@ -1,0 +1,24 @@
+.levels {
+  list-style: none;
+}
+
+.levels li {
+  border-radius: 0;
+  clip-path: polygon(
+    1em 0%,
+    calc(100% - 1em) 0%,
+    100% 50%,
+    calc(100% - 1em) 100%,
+    1em 100%,
+    0% 50%
+  );
+
+  padding: 1em;
+  margin: 0.1em;
+  background-color: var(--color-secondary);
+}
+
+.active {
+  background-color: #4caf50 !important;
+  color: white;
+}
