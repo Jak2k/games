@@ -2,6 +2,7 @@
   "conventionalCommits.scopes": [
     "sliding-puzzle",
     "kill-the-circle",
-    "remember-the-number"
+    "remember-the-number",
+    "who-gets-rich"
   ]
 }
