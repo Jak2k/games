@@ -1,23 +1,23 @@
 import questions from "./assets/questions.json";
+import { Level } from "./components/LevelDisplay";
+
+export type Answer = "A" | "B" | "C" | "D";
 
 type Question = {
   question: string;
   possibleAnswers: {
-    A: string;
-    B: string;
-    C: string;
-    D: string;
+    [K in Answer]: string;
   };
   correctAnswer: string;
 };
 
 type QuestionState = {
-  status: "question" | "correct" | "wrong";
+  status: "question" | "correct" | "wrong" | "won";
   question: Question;
-  level: number;
+  level: Level;
 };
 
-type QuestionAction = { type: "answer"; answer: string } | { type: "next" };
+type QuestionAction = { type: "answer"; answer: Answer } | { type: "next" };
 
 function getRandomQuestion(level: number): Question {
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -38,11 +38,16 @@ export default function questionReducer(
   switch (action.type) {
     case "answer":
       newState.question.correctAnswer === action.answer
-        ? newState.level++ && (newState.status = "correct")
+        ? (newState.status = "correct")
         : (newState.status = "wrong");
       break;
     case "next":
       newState.status = "question";
+      newState.level++;
+      if (newState.level > 15) {
+        newState.status = "won";
+        break;
+      }
       newState.question = getRandomQuestion(newState.level);
       break;
   }

@@ -1,6 +1,6 @@
 import { useReducer } from "react";
 import LevelDisplay from "./components/LevelDisplay";
-import questionReducer, { initialState } from "./questionReducer";
+import questionReducer, { Answer, initialState } from "./questionReducer";
 
 function App() {
   const [questionState, dispatch] = useReducer(questionReducer, initialState);
@@ -20,11 +20,11 @@ function App() {
                     onClick={() =>
                       dispatch({
                         type: "answer",
-                        answer,
+                        answer: answer as Answer,
                       })
                     }
                   >
-                    {questionState.question.possibleAnswers[answer]}
+                    {questionState.question.possibleAnswers[answer as Answer]}
                   </button>
                 </li>
               ))}
@@ -41,10 +41,11 @@ function App() {
             ) : (
               <>Wrong!</>
             )}
+            {questionState.status === "won" && <>You won!</>}
           </>
         )}
       </main>
-      <LevelDisplay level={questionState.level} />
+      <LevelDisplay level={questionState.level || 1} />
     </>
   );
 }
