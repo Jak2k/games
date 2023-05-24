@@ -24,7 +24,7 @@ function getRandomQuestion(level: number): Question {
   // @ts-ignore
   const levelQuestions = questions[level.toString()];
 
-  const randomIndex = Math.round(Math.random() * levelQuestions.length);
+  const randomIndex = Math.floor(Math.random() * levelQuestions.length);
 
   return levelQuestions[randomIndex];
 }
