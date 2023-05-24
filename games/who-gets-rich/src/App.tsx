@@ -17,6 +17,7 @@ function App() {
               {["A", "B", "C", "D"].map((answer) => (
                 <li key={answer}>
                   <button
+                    className="answer"
                     onClick={() =>
                       dispatch({
                         type: "answer",
