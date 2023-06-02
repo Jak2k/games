@@ -9,6 +9,16 @@
         "D": "Madrid"
       },
       "correctAnswer": "B"
+    },
+    {
+      "question": "What is the capital of Spain?",
+      "possibleAnswers": {
+        "A": "London",
+        "B": "Paris",
+        "C": "Rome",
+        "D": "Madrid"
+      },
+      "correctAnswer": "D"
     }
   ],
   "2": [
@@ -21,6 +31,63 @@
         "D": "Dreizehn"
       },
       "correctAnswer": "C"
+    },
+    {
+      "question": "What isn't a number in Spanish?",
+      "possibleAnswers": {
+        "A": "Nueve",
+        "B": "Cinco",
+        "C": "Deux",
+        "D": "Trece"
+      },
+      "correctAnswer": "C"
+    }
+  ],
+  "3": [
+    {
+      "question": "What isn't a science?",
+      "possibleAnswers": {
+        "A": "Biology",
+        "B": "Chemistry",
+        "C": "Physics",
+        "D": "Mathematics"
+      },
+      "correctAnswer": "D"
+    },
+    {
+      "question": "What isn't an own operating system?",
+      "possibleAnswers": {
+        "A": "Windows",
+        "B": "Linux",
+        "C": "MacOS",
+        "D": "FreeBSD"
+      },
+      "correctAnswer": "C",
+      "explanation": "MacOS is based on BSD, which is a Unix-like operating system."
+    }
+  ],
+  "4": [
+    {
+      "question": "What isn't a programming language?",
+      "possibleAnswers": {
+        "A": "Java",
+        "B": "JavaScript",
+        "C": "Python",
+        "D": "HTML"
+      },
+      "correctAnswer": "D",
+      "explanation": "HTML is a markup language, not a programming language."
+    },
+    {
+      "question": "What isn't a programming language?",
+      "possibleAnswers": {
+        "A": "Typescript",
+        "B": "Dart",
+        "C": "Go",
+        "D": "CSS"
+      },
+      "correctAnswer": "D",
+      "explanation": "CSS is a stylesheet language, not a programming language."
     }
   ]
 }

@@ -9,6 +9,7 @@ type Question = {
     [K in Answer]: string;
   };
   correctAnswer: string;
+  explanation?: string;
 };
 
 type QuestionState = {

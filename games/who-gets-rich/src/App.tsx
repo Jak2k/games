@@ -65,6 +65,7 @@ function App() {
                 >
                   Next
                 </button>
+                <p>{questionState.question.explanation || ""}</p>
               </>
             ) : (
               <>
