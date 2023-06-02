@@ -23,6 +23,8 @@ body,
 
   min-width: 100vw;
   min-height: 100vh;
+
+  overflow-x: hidden;
 }
 
 #root {
@@ -41,7 +43,7 @@ header {
   grid-area: Header;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   padding: 1em;
 
@@ -51,6 +53,7 @@ header {
 
 aside {
   grid-area: Level;
+  margin: 1em;
 }
 
 main {
@@ -61,7 +64,14 @@ h1 {
   font-size: 2.5rem;
 }
 
-button.answer {
+h2 {
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 2em;
+  margin-top: 1em;
+}
+
+button.answer, .next {
   border-radius: 0;
   clip-path: polygon(
     1em 0%,
@@ -78,4 +88,25 @@ button.answer {
   color: var(--color-primary-text);
   width: 100%;
   max-width: 700px;
+}
+
+button.answer:hover, .next:hover {
+  background-color: var(--color-secondary);
+  color: var(--color-secondary-text);
+}
+
+.next {
+  margin-left: 2em;
+  max-width: unset;
+  width: 10em;
+}
+
+.answers {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 1em 1em;
+  grid-auto-flow: row;
+  list-style: none;
+  margin: 2em;
 }

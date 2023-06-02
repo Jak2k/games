@@ -13,7 +13,7 @@ function App() {
         {questionState.status === "question" && questionState.question ? (
           <>
             <h2>{questionState.question.question}</h2>
-            <ul>
+            <ul className="answers">
               {["A", "B", "C", "D"].map((answer) => (
                 <li key={answer}>
                   <button
@@ -36,11 +36,62 @@ function App() {
             <h2>Result</h2>
             {questionState.status === "correct" ? (
               <>
-                Correct!
-                <button onClick={() => dispatch({ type: "next" })}>Next</button>
+                <ul className="answers">
+                  {["A", "B", "C", "D"].map((answer) => (
+                    <li key={answer}>
+                      <button
+                        className="answer"
+                        disabled
+                        style={
+                          questionState.question.correctAnswer === answer
+                            ? {
+                                backgroundColor: "green",
+                              }
+                            : {}
+                        }
+                      >
+                        {
+                          questionState.question.possibleAnswers[
+                            answer as Answer
+                          ]
+                        }
+                      </button>
+                    </li>
+                  ))}
+                </ul>
+                <button
+                  onClick={() => dispatch({ type: "next" })}
+                  className="next"
+                >
+                  Next
+                </button>
               </>
             ) : (
-              <>Wrong!</>
+              <>
+                <ul className="answers">
+                  {["A", "B", "C", "D"].map((answer) => (
+                    <li key={answer}>
+                      <button
+                        className="answer"
+                        disabled
+                        style={
+                          questionState.question.correctAnswer === answer
+                            ? {
+                                backgroundColor: "green",
+                              }
+                            : {}
+                        }
+                      >
+                        {
+                          questionState.question.possibleAnswers[
+                            answer as Answer
+                          ]
+                        }
+                      </button>
+                    </li>
+                  ))}
+                </ul>
+              </>
             )}
             {questionState.status === "won" && <>You won!</>}
           </>
